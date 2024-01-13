@@ -1,48 +1,59 @@
 window.addEventListener('DOMContentLoaded', () => {
-  function detailsActivation(buttons, item) {
-    buttons.forEach((button) => {
+  // DETAILS
+
+  function activateDetails() {
+    const buttons = document.querySelectorAll('.details-button');
+    const details = document.querySelector('.pricing__details');
+
+    buttons.forEach((button) =>
       button.addEventListener('click', () => {
         button.classList.toggle('active');
-        item.classList.toggle('active');
+        details.classList.toggle('active');
+      })
+    );
+  }
+
+  activateDetails();
+
+  // TABS
+
+  function activateTabs() {
+    const tabs = document.querySelectorAll('.timetable__tab');
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', (event) => {
+        event.preventDefault();
+        tabs.forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
       });
     });
   }
 
-  const detailsButton = document.querySelectorAll('.details-button');
-  const detailsBlock = document.querySelector('.pricing__details');
+  activateTabs();
 
-  detailsActivation(detailsButton, detailsBlock);
+  // SELFCLICK
 
-  function tabActivation(list) {
-    list.forEach((item) => {
-      item.addEventListener('click', () => {
-        list.forEach((it) => it.classList.remove('active'));
-        item.classList.add('active');
-      });
-    });
-  }
-
-  const tab = document.querySelectorAll('.timetable__tab');
-
-  tabActivation(tab);
-
-  function selfTabActivation(list) {
-    list.forEach((item) => {
-      item.addEventListener('click', () => {
+  function activateSelfTabs(list) {
+    console.log(list);
+    list.forEach((item) =>
+      item.addEventListener('click', (event) => {
+        event.preventDefault();
         item.classList.toggle('active');
-      });
-    });
+      })
+    );
   }
 
   const answerList = document.querySelectorAll('.answer__item');
   const cardList = document.querySelectorAll('.card');
 
-  selfTabActivation(answerList);
-  selfTabActivation(cardList);
+  activateSelfTabs(answerList);
+  activateSelfTabs(cardList);
 
-  // Menu
+  // MENU
 
-  function menuActivation(menu, button) {
+  function menuActivation() {
+    const menu = document.querySelector('.menu');
+    const button = document.querySelector('.header__button-menu');
     const backdrop = document.createElement('div');
 
     function open() {
@@ -61,51 +72,67 @@ window.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       menu.classList.contains('active') ? close() : open();
     });
+
     menu.addEventListener('click', close);
     backdrop.addEventListener('click', close);
   }
 
-  const menu = document.querySelector('.menu');
-  const menuButton = document.querySelector('.header__button-menu');
+  menuActivation();
 
-  menuActivation(menu, menuButton);
+  // SCROLL
 
-  function smothScroll() {
-    function handleIntersection(entries) {
-      entries.forEach((entry) => {
-        const targetAnchor = document.querySelector(`.anchor[href="#${entry.target.id}"]`);
+  function handleIntersection(entries, observer, callback) {
+    entries.forEach((entry) => {
+      const targetAnchor = document.querySelector(`.anchor[href="#${entry.target.id}"]`);
 
-        if (entry.isIntersecting) {
-          targetAnchor.classList.add('active');
-        } else {
-          targetAnchor.classList.remove('active');
-        }
+      if (entry.isIntersecting) {
+        targetAnchor.classList.add('active');
+      } else {
+        targetAnchor.classList.remove('active');
+      }
+
+      callback(targetAnchor);
+    });
+  }
+
+  function createObserver(callback) {
+    const observer = new IntersectionObserver(
+      (entries) => handleIntersection(entries, observer, callback),
+      { threshold: 0.3 }
+    );
+    return observer;
+  }
+
+  function addSmoothScroll(anchor, targetElement) {
+    anchor.addEventListener('click', (event) => {
+      event.preventDefault();
+      targetElement.scrollIntoView({
+        behavior: 'smooth',
       });
-    }
+    });
+  }
 
-    const observer = new IntersectionObserver(handleIntersection, { threshold: 0.3 });
-
+  function smoothScroll() {
     const anchors = document.querySelectorAll('.anchor');
+
+    const observer = createObserver((targetAnchor) => {
+      const targetElement = document.querySelector(targetAnchor.getAttribute('href'));
+
+      addSmoothScroll(targetAnchor, targetElement);
+      observer.observe(targetElement);
+    });
 
     anchors.forEach((anchor) => {
       const targetElement = document.querySelector(anchor.getAttribute('href'));
 
-      if (targetElement) {
-        observer.observe(targetElement);
-
-        anchor.addEventListener('click', (event) => {
-          event.preventDefault();
-          targetElement.scrollIntoView({
-            behavior: 'smooth',
-          });
-        });
-      }
+      addSmoothScroll(anchor, targetElement);
+      observer.observe(targetElement);
     });
   }
 
-  smothScroll();
+  smoothScroll();
 
-  // Modal
+  // MODAL
 
   function modalActivation() {
     const backdrop = document.createElement('div');
@@ -128,33 +155,29 @@ window.addEventListener('DOMContentLoaded', () => {
     backdrop.addEventListener('click', close);
   }
 
-  // Validation
-
-  function validate(form) {
-    form.addEventListener('submit', function (event) {
-      event.preventDefault();
-
-      const name = document.getElementById('register-name').value;
-      const phoneNumber = document.getElementById('register-number').value;
-
-      const nameRegex = /^[\p{Script=Cyrillic}\s-]{5,30}$/u;
-      const phoneNumberRegex = /^380\d{9}$/;
-
-      if (!nameRegex.test(name)) {
-        alert("Будь ласка, введіть коректне ім'я (лише літери).");
-        return false;
-      }
-
-      if (!phoneNumberRegex.test(phoneNumber)) {
-        alert('Будь ласка, введіть коректний номер телефону (починаючи з 38).');
-        return false;
-      }
-
-      modalActivation();
-    });
-  }
+  // FORM SUBMITTING
 
   const form = document.getElementById('register-form');
 
-  validate(form);
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const name = document.getElementById('register-name').value;
+    const phoneNumber = document.getElementById('register-number').value;
+
+    const isValidName = /^[\p{Script=Cyrillic}\s-]{5,30}$/u.test(name);
+    const isValidPhoneNumber = /^380\d{9}$/.test(phoneNumber);
+
+    if (!isValidName) {
+      alert("Будь ласка, введіть коректне ім'я (лише літери).");
+      return;
+    }
+
+    if (!isValidPhoneNumber) {
+      alert('Будь ласка, введіть коректний номер телефону (починаючи з 38).');
+      return;
+    }
+
+    modalActivation();
+  });
 });
