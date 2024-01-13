@@ -358,8 +358,8 @@ footer {
   content: "";
   background-image: url(../img/vector.svg);
   background-size: cover;
-  width: 50px;
-  aspect-ratio: 1;
+  width: 55px;
+  height: 55px;
   position: absolute;
   top: -35px;
   left: 50%;
@@ -378,9 +378,10 @@ footer {
     padding: 30px;
   }
   .situation__content::before {
-    width: 100px;
+    width: 110px;
+    height: 107px;
     top: 50%;
-    left: -60px;
+    left: -80px;
     transform: translate(0%, -50%);
   }
 }
@@ -461,7 +462,7 @@ footer {
 
 @media only screen and (min-width: 1024px) {
   .author__container {
-    gap: 200px;
+    gap: 250px;
   }
   .author__name {
     text-align: left;
