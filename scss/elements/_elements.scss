@@ -1,0 +1,26 @@
+body {
+  font-size: var(--fs-text);
+  font-weight: var(--fw-semi-bold);
+  color: var(--clr-black);
+  font-family: 'Mulish', sans-serif;
+  line-height: 1.5;
+}
+
+main {
+  margin-top: 40px;
+}
+
+section {
+  padding: var(--pad-section) 0px;
+  &:nth-of-type(odd) {
+    background: var(--clr-back);
+  }
+}
+
+footer {
+  padding: var(--pad-section) 0px;
+}
+
+:focus {
+  outline-color: var(--clr-blue-dark);
+}

@@ -1,0 +1,61 @@
+.situation {
+  &__container {
+    display: grid;
+    align-items: center;
+    gap: 80px;
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    gap: 25px;
+  }
+  &__content {
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+    background: var(--clr-back);
+    border-radius: var(--radius);
+    position: relative;
+    &::before {
+      content: '';
+      background-image: url(../img/vector.svg);
+      background-size: cover;
+      width: 50px;
+      aspect-ratio: 1;
+      position: absolute;
+      top: -35px;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &__image {
+    justify-self: center;
+  }
+}
+
+@include adaptation('tablet') {
+  .situation {
+    &__container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+    &__content {
+      padding: 30px;
+      &::before {
+        width: 100px;
+        top: 50%;
+        left: -60px;
+        transform: translate(0%, -50%);
+      }
+    }
+  }
+}
+
+@include adaptation('tablet-wide') {
+  .situation {
+    &__container {
+      gap: 70px;
+    }
+  }
+}

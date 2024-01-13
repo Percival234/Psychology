@@ -1,0 +1,24 @@
+.footer {
+  background: var(--clr-footer);
+  color: var(--clr-white);
+  &__container {
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+  &__block {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    flex: 1 1 290px;
+  }
+  &__link {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &__icon {
+    vertical-align: top;
+  }
+}

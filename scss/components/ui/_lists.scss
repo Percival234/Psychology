@@ -1,0 +1,77 @@
+@import '../../tools/mixins';
+
+@import '../backdrop/backdrop';
+
+.number-list,
+.check-list,
+.point-list,
+.vector-list {
+  display: grid;
+  gap: 15px;
+  position: relative;
+  & li {
+    display: flex;
+    gap: 10px;
+  }
+}
+
+.number-list {
+  counter-reset: li;
+  font-weight: var(--fw-regular);
+  & li {
+    &::before {
+      font-weight: var(--fw-bold);
+      color: var(--clr-blue);
+      counter-increment: li;
+      content: '0' counter(li) '.';
+    }
+  }
+}
+
+.check-list {
+  font-weight: var(--fw-regular);
+  & li::before {
+    content: url(../img/check.svg);
+  }
+}
+
+.point-list li {
+  align-items: start;
+  &::before {
+    content: '';
+    min-width: 8px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--clr-blue);
+    position: relative;
+    top: calc(1em / 2);
+  }
+}
+
+.vector-list li {
+  &::before {
+    content: url(../img/vector.svg);
+    position: relative;
+  }
+}
+
+.grid-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  &__item {
+    flex: 1 0 290px;
+    background: var(--clr-white);
+    border-radius: var(--radius);
+    padding: 20px;
+  }
+  &__item-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+  }
+  &__icon {
+    width: 50px;
+  }
+}

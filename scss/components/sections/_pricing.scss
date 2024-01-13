@@ -1,0 +1,71 @@
+.pricing {
+  &__container {
+    display: grid;
+  }
+  &__cards {
+    display: grid;
+    gap: 30px;
+  }
+  &__info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    text-align: center;
+    gap: 20px;
+  }
+  &__info-button {
+    color: var(--clr-blue-dark);
+    background: transparent;
+    font-size: var(--fs-sub-title);
+    font-weight: var(--fw-bold);
+    &::after {
+      content: '';
+      display: inline-block;
+      background-image: url(../img/arrow-blue.svg);
+      background-size: cover;
+      width: 20px;
+      height: 18px;
+      margin-left: 10px;
+      transition: var(--transition);
+    }
+    &.active::after {
+      transform: rotateX(180deg);
+    }
+  }
+  &__details {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: var(--transition-long);
+    &.active {
+      grid-template-rows: 1fr;
+    }
+  }
+  &__details-list {
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__details-item {
+    flex: 1 1 450px;
+    display: grid;
+    gap: 15px;
+    padding: 20px;
+    justify-items: center;
+    text-align: center;
+    background: var(--clr-white);
+    border-radius: var(--radius);
+  }
+}
+
+@include adaptation('tablet-wide') {
+  .pricing {
+    &__cards {
+      grid-template-columns: repeat(3, 1fr);
+      align-items: center;
+    }
+    &__details-item {
+      justify-items: flex-start;
+      text-align: left;
+    }
+  }
+}

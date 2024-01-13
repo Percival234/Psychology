@@ -1,0 +1,66 @@
+.menu {
+  display: flex;
+  position: absolute;
+  top: 100%;
+  right: 0%;
+  background: var(--clr-white);
+  width: min(60vw, 400px);
+  height: 100vh;
+  transform: translateX(100%);
+  transition: var(--transition-long);
+  &.active {
+    transform: translateX(0%);
+  }
+  &__list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 20px;
+  }
+  &__link {
+    display: block;
+    padding: 5px 20px;
+    font-size: var(--fs-link);
+    font-weight: var(--fw-bold);
+  }
+}
+
+@include adaptation('tablet-wide') {
+  .menu {
+    position: static;
+    height: auto;
+    width: 100%;
+    background: transparent;
+    transform: none;
+    &__list {
+      justify-content: flex-end;
+      flex-direction: row;
+      gap: 30px;
+      padding-top: 0px;
+    }
+    &__link {
+      padding: 0px;
+      position: relative;
+      transition: var(--transition);
+      &::before {
+        content: '';
+        position: absolute;
+        bottom: 0%;
+        width: 0%;
+        display: block;
+        height: 2px;
+        background: var(--clr-black);
+        transition: var(--transition);
+      }
+      &:hover,
+      &:active,
+      &:focus,
+      &.active {
+        &::before {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.result {
+  &__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__image {
+    justify-self: center;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  &__sub-title {
+    text-align: center;
+  }
+  &__number {
+    font-size: 60px;
+    line-height: 1;
+  }
+}
+
+@include adaptation('tablet-wide') {
+  .result {
+    &__container {
+      gap: 70px;
+      flex-direction: row;
+    }
+    &__content {
+      align-items: flex-start;
+    }
+  }
+}

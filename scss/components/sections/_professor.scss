@@ -1,0 +1,21 @@
+.professor {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    isolation: isolate;
+    align-items: center;
+    justify-content: center;
+  }
+  &__content {
+    flex: 1 1 400px;
+    display: grid;
+    gap: 20px;
+  }
+  &__detail {
+    display: grid;
+    gap: 10px;
+    padding: 20px 25px;
+    background: var(--clr-back);
+    border-radius: var(--radius);
+  }
+}

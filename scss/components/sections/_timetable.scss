@@ -1,0 +1,159 @@
+.timetable {
+  &__container {
+    display: grid;
+  }
+  &__tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  &__tab {
+    cursor: pointer;
+    background: var(--clr-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    padding: 15px;
+    &:nth-of-type(1) {
+      --clr-bg: var(--clr-gray);
+      --clr-button: var(--clr-gray-extra-dark);
+    }
+    &:nth-of-type(2) {
+      --clr-bg: var(--clr-back);
+      --clr-button: var(--clr-blue-light);
+    }
+    &:nth-of-type(3) {
+      --clr-bg: var(--clr-pink);
+      --clr-button: var(--clr-pink-dark);
+    }
+    &.active {
+      & .timetable__tab-body {
+        margin-top: 20px;
+        padding: 20px 10px;
+        background: var(--clr-white);
+        grid-template-rows: 1fr;
+      }
+      & .timetable__tab-icon {
+        transform: rotateX(180deg);
+      }
+    }
+    & .sub-title {
+      display: none;
+    }
+  }
+  &__number {
+    font-size: 30px;
+  }
+  &__tab-header {
+    padding-left: 10px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__tab-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    background: var(--clr-button);
+  }
+  &__tab-icon {
+    vertical-align: middle;
+  }
+  &__tab-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    padding: 0px 10px;
+    border-radius: calc(var(--radius) - 12px);
+  }
+  &__tab-content {
+    overflow: hidden;
+    display: grid;
+    gap: 20px;
+  }
+  &__tab-item {
+    display: grid;
+    gap: 15px;
+  }
+  & .point-list {
+    flex-direction: column;
+  }
+  &__tab-result {
+    display: grid;
+    padding: 15px;
+    border-radius: var(--radius);
+    background: var(--clr-back);
+  }
+  &__tab-warning {
+    padding: 15px;
+    border-radius: var(--radius);
+    background: var(--clr-pink);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: var(--fw-bold);
+  }
+  &__tab-warning-icon {
+    font-size: 20px;
+    min-width: 30px;
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--clr-pink-dark);
+    color: var(--clr-white);
+    font-weight: var(--fw-bold);
+  }
+  & .point-list {
+    display: flex;
+  }
+}
+
+@include adaptation('tablet-wide') {
+  .timetable {
+    &__tabs {
+      flex-direction: row;
+    }
+    & .sub-title {
+      display: block;
+    }
+    &__tab {
+      flex: 1 0 180px;
+      &.active {
+        flex: 1 1 100%;
+        background: none;
+        & .timetable__tab-header {
+          display: none;
+        }
+        & .timetable__tab-body {
+          cursor: auto;
+          margin-top: 0px;
+          padding: 0px;
+          transform: scale(1);
+        }
+      }
+    }
+    &__tab-header {
+      padding: 0px;
+    }
+    &__number {
+      font-size: 50px;
+    }
+    & .title {
+      font-size: var(--fs-sub-title);
+      text-align: center;
+    }
+    &__tab-button {
+      display: none;
+    }
+    &__tab-body {
+      transform: scale(0);
+    }
+    & .point-list {
+      flex-direction: row;
+      gap: 50px;
+    }
+  }
+}

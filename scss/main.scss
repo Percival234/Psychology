@@ -1,0 +1,77 @@
+// FONTS
+@import './settings/fonts';
+
+// RESET
+@import './generic/reset';
+
+// MIXINS
+@import './tools/mixins';
+
+// VARIABLES
+@import './settings/variables';
+
+// ELEMENTS
+@import './elements/elements';
+
+// WRAPPER
+@import './components/wrapper/wrapper';
+
+// CONTAINER
+@import './components/container/container';
+
+// HEADER
+@import './components/header/header';
+
+// MENU
+@import './components/menu/menu';
+
+// INTRODUCTION
+@import './components/sections/introduction';
+
+// SITUATION
+@import './components/sections/situation';
+
+// ADVANTAGE
+@import './components/sections/advantage';
+
+// PROFESSOR
+@import './components/sections/professor';
+
+// AUTHOR
+@import './components/sections/author';
+
+// RESULT
+@import './components/sections/result';
+
+// FORMAT
+@import './components/sections/format';
+
+// TIME TABLE
+@import './components/sections/timetable';
+
+// STATISTIC
+@import './components/sections/statistic';
+
+// PRICING
+@import './components/sections/pricing';
+
+// CARD
+@import './components/sections/card';
+
+// QUESTION
+@import './components/sections/question';
+
+// ANSWER
+@import './components/sections/answer';
+
+// FOOTER
+@import './components/footer/footer';
+
+// MODAL
+@import './components/modal/modal';
+
+// UI
+@import './components/ui/buttons';
+@import './components/ui/lists';
+@import './components/ui/titles';
+@import './components/ui/logo';

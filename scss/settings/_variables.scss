@@ -1,0 +1,51 @@
+:root {
+  // COLORS
+  --clr-black: #44464a;
+  --clr-pink: #ffdce8;
+  --clr-pink-dark: #f8bacf;
+  --clr-pink-extra-dark: #ec9cb8;
+  --clr-gray: #dee0ff;
+  --clr-gray-dark: #b9bdf9;
+  --clr-gray-extra-dark: #a7a9d6;
+  --clr-gray-light: #e9eaff;
+  --clr-blue-light: #ceebfc;
+  --clr-blue-dark: #3c7ca0;
+  --clr-blue: #77b7db;
+  --clr-white: #ffffff;
+  --clr-back: #f3f9fd;
+  --clr-footer: #2d3f45;
+  --clr-gradient: linear-gradient(135deg, #77b7db, #9ed6f7);
+  --clr-backdrop: #00000040;
+  // FONT SIZE
+  --fs-text: 14px;
+  --fs-title: 24px;
+  --fs-sub-title: 24px;
+  --fs-item-title: 18px;
+  --fs-link: 20px;
+  // FONT WEIGHT
+  --fw-regular: 400;
+  --fw-semi-bold: 600;
+  --fw-bold: 700;
+  // TRANSITION
+  --transition: 0.2s;
+  --transition-long: 0.4s;
+  // PADDING
+  --pad-section: 30px;
+  --container-gap: 30px;
+  // BORDER RADIUS
+  --radius: 30px;
+  @include adaptation('phone-wide') {
+    --fs-text: 18px;
+    --fs-title: 35px;
+    --fs-sub-title: 30px;
+    --fs-item-title: 20px;
+  }
+  @include adaptation('tablet') {
+    --fs-title: 40px;
+    --pad-section: 60px;
+  }
+  @include adaptation('tablet-wide') {
+    --pad-section: 80px;
+    --container-gap: 50px;
+  }
+}

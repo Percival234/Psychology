@@ -1,0 +1,69 @@
+.answer {
+  &__container {
+    display: grid;
+    gap: 20px;
+  }
+  &__list {
+    display: grid;
+    gap: 15px;
+  }
+  &__item {
+    cursor: pointer;
+    padding: 15px;
+    border-radius: var(--radius);
+    background: var(--clr-white);
+  }
+  &__header {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: var(--fw-bold);
+  }
+  &__button {
+    width: 30px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: var(--clr-back);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: var(--transition);
+    & span {
+      position: absolute;
+      width: 15px;
+      height: 2px;
+      border-radius: 1px;
+      background: var(--clr-blue-dark);
+      transition: var(--transition);
+      &:first-of-type {
+        transform: rotate(90deg);
+      }
+    }
+  }
+  &__item-content {
+    display: grid;
+    padding: 0px 15px;
+    border-radius: 15px;
+    background: var(--clr-back);
+    grid-template-rows: 0fr;
+    transition: var(--transition-long);
+  }
+  &__item.active {
+    & .answer__item-content {
+      grid-template-rows: 1fr;
+      padding: 15px;
+      margin-top: 15px;
+    }
+    & .answer__button {
+      transform: rotate(90deg);
+      & span:first-of-type {
+        transform: rotate(90deg);
+      }
+    }
+  }
+  &__text {
+    overflow: hidden;
+  }
+}

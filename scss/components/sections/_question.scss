@@ -1,0 +1,27 @@
+.question {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  &__form {
+    flex: 0 1 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  &__input {
+    color: var(--clr-gray-extra-dark);
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 1px solid var(--clr-gray-dark);
+    &::placeholder {
+      color: var(--clr-gray-dark);
+      font-weight: var(--fw-regular);
+    }
+    &:focus {
+      color: var(--clr-blue-dark);
+    }
+  }
+}

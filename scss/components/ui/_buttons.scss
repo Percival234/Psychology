@@ -1,0 +1,39 @@
+.button {
+  padding: 10px 40px;
+  color: var(--clr-white);
+  font-size: var(--fs-item-title);
+  border-radius: 2em;
+  background: var(--clr-gradient);
+  justify-self: center;
+  text-align: center;
+  min-width: 100%;
+  transition: var(--transition);
+  &:hover {
+    opacity: 0.7;
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+  &:disabled {
+    opacity: 0.4;
+    &:active {
+      transform: none;
+    }
+  }
+}
+
+@include adaptation('phone-wide') {
+  .button {
+    min-width: auto;
+  }
+}
+
+.button-invert {
+  background: var(--clr-white);
+  color: var(--clr-blue-dark);
+}
+
+.button-light {
+  background: var(--clr-gray-light);
+  color: var(--clr-blue-dark);
+}
